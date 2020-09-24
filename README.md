@@ -1,3 +1,6 @@
+# External Links
+- Google Drive doc: https://docs.google.com/document/d/1IZFg-ZR-zvI-OPEDUMDv0V3S0JuZCPVzcyKA-tYkVwQ/edit?usp=sharing
+
 # Game Concept
 
 ## idea
