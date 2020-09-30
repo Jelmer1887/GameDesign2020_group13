@@ -17,16 +17,20 @@ public class PlayerMovement : MonoBehaviour
     }
 
 	void Update() {
+		//Get movement input
 		float x = Input.GetAxisRaw("Horizontal");
 		float z = Input.GetAxisRaw("Vertical");
+		//Move player relative to its rotation
 		Vector3 moveBy = transform.right * x + transform.forward * z;
 		rb.MovePosition(transform.position + moveBy.normalized * speed * Time.deltaTime);
 
+		//Jump
 		if (Input.GetKeyDown(KeyCode.Space) && IsOnGround()) {
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
 		}
 	}
 
+	//Checks whether player is standing on ground, prevents jumping mid-air
 	public bool IsOnGround() {
 		Collider[] colliders = Physics.OverlapSphere(groundChecker.position, checkRadius, groundLayer);
 		if (colliders.Length > 0) {
