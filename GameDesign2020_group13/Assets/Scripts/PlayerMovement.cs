@@ -16,14 +16,16 @@ public class PlayerMovement : MonoBehaviour
 		rb = GetComponent<Rigidbody>();
     }
 
-	void Update() {
+	void FixedUpdate() {
 		//Get movement input
 		float x = Input.GetAxisRaw("Horizontal");
 		float z = Input.GetAxisRaw("Vertical");
 		//Move player relative to its rotation
 		Vector3 moveBy = transform.right * x + transform.forward * z;
 		rb.MovePosition(transform.position + moveBy.normalized * speed * Time.deltaTime);
+	}
 
+	private void Update() {
 		//Jump
 		if (Input.GetKeyDown(KeyCode.Space) && IsOnGround()) {
 			rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);

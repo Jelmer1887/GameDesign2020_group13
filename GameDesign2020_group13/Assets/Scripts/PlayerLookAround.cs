@@ -17,7 +17,7 @@ public class PlayerLookAround : MonoBehaviour
 	}
 
     
-    void Update(){
+    void FixedUpdate(){
 		//Get mouse input
 		float x = Input.GetAxis("Mouse X") * sensitivity * Time.deltaTime;
 		float y = Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime * -1f;
