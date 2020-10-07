@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Wolf : MonoBehaviour
 {
+	private RaycastHit vision;
 	public int sightReach = 5;
 	public int fov = 60;
 	GameObject player;
@@ -17,7 +18,8 @@ public class Wolf : MonoBehaviour
     void Start()
     {
 		rb = GetComponent<Rigidbody>();
-    }
+		transform.LookAt(patrolPoints[0].position);
+	}
 
     // Update is called once per frame
     void Update()
@@ -26,15 +28,23 @@ public class Wolf : MonoBehaviour
 			player = GameObject.FindGameObjectWithTag("Player");
 		}
 
-		if (Vector3.Distance(transform.position, player.transform.position) < sightReach && Vector3.Angle(player.transform.position - transform.position, transform.forward) <= fov) {
-			GameMaster.Instance.respawnPlayer();
+		if (Vector3.Distance(transform.position, player.transform.position) < sightReach) {
+			float angle = Vector3.Angle(player.transform.position - transform.position, transform.forward);
+			if (Mathf.Abs(angle) <= fov) {
+				if(Physics.Raycast(transform.position, player.transform.position - transform.position, out vision)) {
+					if (vision.collider.CompareTag("Player")) {
+						GameMaster.Instance.respawnPlayer();
+					}
+				}
+			}
 		}
 
-		if(Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) < 0.5f) {
+		if(Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) == 0) {
 			currentPatrolPoint++;
 			if(currentPatrolPoint >= patrolPoints.Length) {
 				currentPatrolPoint = 0;
 			}
+			transform.LookAt(patrolPoints[currentPatrolPoint].position);
 		}
 		transform.position = Vector3.MoveTowards(transform.position, patrolPoints[currentPatrolPoint].position, speed * Time.deltaTime);
 		
