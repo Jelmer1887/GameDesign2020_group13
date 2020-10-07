@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 562424931}
   - component: {fileID: 562424930}
   - component: {fileID: 562424934}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Pushable enitity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5126,6 +5126,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Wolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6461960997741478118, guid: b7adae3f2e1c5e348a0be99f4b0d4e84,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6461960997741478119, guid: b7adae3f2e1c5e348a0be99f4b0d4e84,
         type: 3}
