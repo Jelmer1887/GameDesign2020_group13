@@ -2797,14 +2797,23 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 678636626}
+<<<<<<< Updated upstream
         m_MethodName: PlayLevel1
         m_Mode: 5
+=======
+        m_MethodName: LoadLevel1
+        m_Mode: 1
+>>>>>>> Stashed changes
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
+<<<<<<< Updated upstream
           m_StringArgument: Game level
+=======
+          m_StringArgument: 
+>>>>>>> Stashed changes
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2100200790
