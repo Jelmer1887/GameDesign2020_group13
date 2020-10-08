@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameMaster : MonoBehaviour
 {
@@ -34,6 +35,12 @@ public class GameMaster : MonoBehaviour
 
 	//Moves the game to the next level
 	public void nextLevel() {
-		Debug.Log("Next Level");
+		if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+		} else {
+			Cursor.visible = true;
+			Cursor.lockState = CursorLockMode.None;
+			SceneManager.LoadScene(0);
+		}
 	}
 }
