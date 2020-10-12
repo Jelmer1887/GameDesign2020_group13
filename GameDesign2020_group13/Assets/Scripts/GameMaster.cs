@@ -18,6 +18,7 @@ public class GameMaster : MonoBehaviour
 	}
 
 	public Transform spawnpoint;
+	[HideInInspector]
 	public GameObject player;
 
 	void Update(){
