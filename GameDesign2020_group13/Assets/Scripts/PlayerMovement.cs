@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody rb;
-	[SerializeField] float speed = 50;
-	[SerializeField] float jumpForce = 4;
-	[SerializeField] Transform groundChecker;
-	[SerializeField] float checkRadius;
-	[SerializeField] LayerMask groundLayer;
+	public float speed = 50;
+	public float jumpForce = 4;
+	public Transform groundChecker = null;
+	public float checkRadius = 0.25f;
+	public LayerMask groundLayer = new LayerMask();
 
 	void Start()
     {

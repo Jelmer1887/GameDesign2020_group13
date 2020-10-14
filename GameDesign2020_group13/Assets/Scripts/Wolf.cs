@@ -33,7 +33,7 @@ public class Wolf : MonoBehaviour
 			if (Mathf.Abs(angle) <= fov) {
 				if(Physics.Raycast(transform.position, player.transform.position - transform.position, out vision)) {
 					if (vision.collider.CompareTag("Player")) {
-						GameMaster.Instance.respawnPlayer();
+						GameMaster.Instance.respawnPlayer(vision.collider.gameObject);
 					}
 				}
 			}
