@@ -18,18 +18,10 @@ public class GameMaster : MonoBehaviour
 	}
 
 	public Transform spawnpoint;
-	[HideInInspector]
-	public GameObject player;
-
-	void Update(){
-
-        if(player == null) {
-			player = GameObject.FindGameObjectWithTag("Player");
-		}
-    }
+	public int keys;
 
 	//Respawns the player at current spawnpoint
-	public void respawnPlayer() {
+	public void respawnPlayer(GameObject player) {
 		player.transform.position = spawnpoint.position;
 		player.transform.rotation = spawnpoint.rotation;
 	}
@@ -42,6 +34,24 @@ public class GameMaster : MonoBehaviour
 			Cursor.visible = true;
 			Cursor.lockState = CursorLockMode.None;
 			SceneManager.LoadScene(0);
+		}
+	}
+
+	//Adds a key
+	public void pickupKey() {
+		Debug.Log("Picked up a key!");
+		keys++;
+	}
+
+	//Uses a key if there is one
+	//Reports to the script that called this method
+	//whether it was successful or not
+	public bool useKey() {
+		if(keys > 0) {
+			keys--;
+			return true;
+		} else {
+			return false;
 		}
 	}
 }

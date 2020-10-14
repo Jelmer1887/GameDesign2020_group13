@@ -6,11 +6,13 @@ public class PlayerDisguise : MonoBehaviour
 {
 	bool isDisguised;
 	public float disguiseDuration;
+	float timer;
 	public GameObject mask;
 
     // Start is called before the first frame update
     void Start()
     {
+		timer = disguiseDuration;
 		mask.SetActive(false);
     }
 
@@ -18,16 +20,19 @@ public class PlayerDisguise : MonoBehaviour
     void Update()
     {
 		if (Input.GetKeyDown(KeyCode.E) && !isDisguised) {
+			Debug.Log("Disguise!");
 			isDisguised = true;
 			mask.SetActive(true);
 		}
 
 		if (isDisguised) {
-			if (disguiseDuration > 0) {
-				disguiseDuration -= Time.deltaTime;
+			Debug.Log(timer);
+
+			if (timer > 0) {
+				timer -= Time.deltaTime;
 			} else {
 				Debug.Log("Time has run out!");
-				disguiseDuration = 0;
+				timer = disguiseDuration;
 				isDisguised = false;
 			}
 		}
