@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PlayerDisguise : MonoBehaviour
 {
-	bool isDisguised;
+	public bool isDisguised;
 	public float disguiseDuration;
-	float timer;
+	public float timer;
 	public GameObject mask;
 
     // Start is called before the first frame update
