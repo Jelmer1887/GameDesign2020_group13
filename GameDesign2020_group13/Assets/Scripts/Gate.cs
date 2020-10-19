@@ -30,5 +30,6 @@ public class Gate : MonoBehaviour
 		hasOpened = true;
 		gateClosed.SetActive(false);
 		gateOpen.SetActive(true);
+		gameObject.GetComponent<BoxCollider>().enabled = false;
 	}
 }
