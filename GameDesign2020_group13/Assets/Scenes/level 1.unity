@@ -53514,6 +53514,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b697c1735de0241b7c2f69e176b890, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  audioHolder: {fileID: 1253391912060200904, guid: 85a43dbf7258dd040b2306546e32765c,
+    type: 3}
+  finishSound: {fileID: 8300000, guid: 4bba96a4fab36464b985331ad9e01127, type: 3}
 --- !u!23 &2024993422
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -53586,7 +53589,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4bba96a4fab36464b985331ad9e01127, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
