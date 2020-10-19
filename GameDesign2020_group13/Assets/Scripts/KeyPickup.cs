@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class KeyPickup : MonoBehaviour{
 
+	public GameObject audioHolder;
+	public AudioClip pickupSound;
 	public float rotationSpeed = 3f;
 
 	//Rotates the key on the y-axis
@@ -16,6 +18,8 @@ public class KeyPickup : MonoBehaviour{
 	private void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag("Player")) {
 			GameMaster.Instance.pickupKey();
+			GameObject newAudio = Instantiate(audioHolder, transform.position, Quaternion.identity);
+			newAudio.GetComponent<AudioSource>().PlayOneShot(pickupSound, 0.3f);
 			Destroy(this.gameObject);
 		}
 	}
