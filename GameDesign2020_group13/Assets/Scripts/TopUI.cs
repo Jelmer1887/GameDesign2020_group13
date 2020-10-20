@@ -1,51 +1,68 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEngine;
-using Unity.SceneManager;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class TopUI : MonoBehaviour
 {
     int pig = 0;
-    void ChangePig()
+
+    public Image imgPig1;
+    public Image imgPig2;
+    public Image imgPig3;
+
+    void Start() //Lets start by getting a reference to our image component.
     {
-        if (pig == 0)
-        {
-            Pig1();
-            pig++;
-        }
-        else if( pig == 1)
+        GameObject go = GameObject;
+        imgPig1 = go.GetComponent<Image>();
+        imgPig2 = go.GetComponent<Image>();
+        imgPig3 = go.GetComponent<Image>();
+        Pig1();
+    }
+
+    public void ChangePig() 
+    {
+        if( pig == 1)
         {
             Pig2();
-            pig++;
         }
         else if (pig == 2)
         {
             Pig3();
-            pig++;
         }
         else
         {
             pig = 0;
+            Pig1();
         }
     }
-    void Pig1()
+    public void Pig1()
     {
-        //Image Pig veranderen ofzo en de andere 2 niet
+        imgPig1.enabled =true;
+        imgPig2.enabled = false;
+        imgPig3.enabled = false;
     }
-    void Pig2()
+    public void Pig2()
     {
-
+        imgPig1.enabled = false;
+        imgPig2.enabled = true;
+        imgPig3.enabled = false;
     }
-    void Pig3()
+    public void Pig3()
     {
-
+        imgPig1.enabled = false;
+        imgPig2.enabled = false;
+        imgPig3.enabled = true;
     }
-    
-    private void Update()
+   
+    void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (Input.GetKey(KeyCode.Tab))
         {
+            pig += 1;
             ChangePig();
-        }
+        }   
     }
 }
