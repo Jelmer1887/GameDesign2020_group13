@@ -15,11 +15,13 @@ public class TopUI : MonoBehaviour
 
     void Start() //Lets start by getting a reference to our image component.
     {
-        GameObject go = GameObject;
+		//GameObject is a class, if you want a reference to the gameobject the script is attached to, you use 'gameObject'
+
+        /*GameObject go = GameObject;
         imgPig1 = go.GetComponent<Image>();
         imgPig2 = go.GetComponent<Image>();
         imgPig3 = go.GetComponent<Image>();
-        Pig1();
+        Pig1();*/
     }
 
     public void ChangePig() 
@@ -59,7 +61,7 @@ public class TopUI : MonoBehaviour
    
     void Update ()
     {
-        if (Input.GetKey(KeyCode.Tab))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             pig += 1;
             ChangePig();

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,8 +18,9 @@ public class GameMaster : MonoBehaviour
 		}
 	}
 
-	public Transform spawnpoint;
+	public Transform[] spawnpoints;
 	public int keys;
+	public int lives = 3;
 
 	public GameObject[] players;
 	public int currentPlayer = 0;
@@ -31,8 +33,9 @@ public class GameMaster : MonoBehaviour
 
 	//Respawns the player at current spawnpoint
 	public void respawnPlayer(GameObject player) {
-		player.transform.position = spawnpoint.position;
-		player.transform.rotation = spawnpoint.rotation;
+		int playerInd = Array.IndexOf(players, player);
+		players[playerInd].transform.position = spawnpoints[playerInd].position;
+		players[playerInd].transform.rotation = spawnpoints[playerInd].rotation;
 	}
 
 	//Moves the game to the next level
@@ -61,6 +64,16 @@ public class GameMaster : MonoBehaviour
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	//Removes a life
+	//If there are no lifes left, restart the level
+	public void removeLife() {
+		lives--;
+
+		if (lives == 0) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
 		}
 	}
 

@@ -38,6 +38,7 @@ public class Wolf : MonoBehaviour
 			float angle = Vector3.Angle(other.transform.position - transform.position, transform.forward);
 			if (Mathf.Abs(angle) <= 0.5*fov) {
 				if (Physics.Raycast(transform.position, other.transform.position - transform.position, out vision)) {
+					GameMaster.Instance.removeLife();
 					GameMaster.Instance.respawnPlayer(vision.collider.gameObject);
 				}
 			}
