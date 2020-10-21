@@ -15,13 +15,14 @@ public class TopUI : MonoBehaviour
 
     void Start() //Lets start by getting a reference to our image component.
     {
-		//GameObject is a class, if you want a reference to the gameobject the script is attached to, you use 'gameObject'
+        //GameObject is a class, if you want a reference to the gameobject the script is attached to, you use 'gameObject'
 
         /*GameObject go = GameObject;
         imgPig1 = go.GetComponent<Image>();
         imgPig2 = go.GetComponent<Image>();
         imgPig3 = go.GetComponent<Image>();
         Pig1();*/
+        Pig1();
     }
 
     public void ChangePig() 
