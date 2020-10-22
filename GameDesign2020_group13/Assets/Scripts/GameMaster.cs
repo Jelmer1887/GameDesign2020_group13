@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cinemachine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,6 +25,11 @@ public class GameMaster : MonoBehaviour
 
 	public GameObject[] players;
 	public int currentPlayer = 0;
+
+	private void Start() {
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
 
 	private void Update() {
 		if (Input.GetKeyDown(KeyCode.Tab)) {
@@ -80,9 +86,8 @@ public class GameMaster : MonoBehaviour
 	//Cycle through players by deactivating active player and activating next player
 	private void switchPlayer() {
 		//Switch off current player
-		players[currentPlayer].transform.Find("Camera").GetComponent<Camera>().enabled = false;
+		players[currentPlayer].transform.Find("CM").GetComponent<CinemachineFreeLook>().enabled = false;
 		players[currentPlayer].GetComponent<PlayerMovement>().enabled = false;
-		players[currentPlayer].GetComponent<PlayerLookAround>().enabled = false;
 		if (players[currentPlayer].GetComponent<PlayerDisguise>() != null) {
 			players[currentPlayer].GetComponent<PlayerDisguise>().enabled = false;
 		}
@@ -93,9 +98,8 @@ public class GameMaster : MonoBehaviour
 		}
 
 		//Switch on next player
-		players[currentPlayer].transform.Find("Camera").GetComponent<Camera>().enabled = true;
+		players[currentPlayer].transform.Find("CM").GetComponent<CinemachineFreeLook>().enabled = true;
 		players[currentPlayer].GetComponent<PlayerMovement>().enabled = true;
-		players[currentPlayer].GetComponent<PlayerLookAround>().enabled = true;
 		if (players[currentPlayer].GetComponent<PlayerDisguise>() != null) {
 			players[currentPlayer].GetComponent<PlayerDisguise>().enabled = true;
 		}
