@@ -23,7 +23,6 @@ public class PlayerDisguise : MonoBehaviour
 			Debug.Log("Disguise!");
 			isDisguised = true;
 			mask.SetActive(true);
-			gameObject.tag = "DisguisedPlayer";
 		}
 
 		if (isDisguised) {
@@ -35,7 +34,6 @@ public class PlayerDisguise : MonoBehaviour
 				Debug.Log("Time has run out!");
 				timer = disguiseDuration;
 				isDisguised = false;
-				gameObject.tag = "Player";
 			}
 		}
 	}

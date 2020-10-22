@@ -5,15 +5,11 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 	Rigidbody rb;
-	public float speed = 6f;
-	public float jumpForce = 4f;
+	public float speed = 50;
+	public float jumpForce = 4;
 	public Transform groundChecker = null;
 	public float checkRadius = 0.25f;
 	public LayerMask groundLayer = new LayerMask();
-
-	public Transform cam;
-	public float turnSmoothTime;
-	private float turnSmoothVelocity;
 
 	void Start()
     {
@@ -25,16 +21,8 @@ public class PlayerMovement : MonoBehaviour
 		float x = Input.GetAxisRaw("Horizontal");
 		float z = Input.GetAxisRaw("Vertical");
 		//Move player relative to its rotation
-		Vector3 moveBy = new Vector3(x, 0f, z).normalized;
-
-		if (moveBy.magnitude >= 0.1f) {
-			float targetAngle = Mathf.Atan2(moveBy.x, moveBy.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
-			float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-			transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-			Vector3 direction = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-			rb.MovePosition(transform.position + direction.normalized * speed * Time.deltaTime);
-		}
+		Vector3 moveBy = transform.right * x + transform.forward * z;
+		rb.MovePosition(transform.position + moveBy.normalized * speed * Time.deltaTime);
 	}
 
 	private void Update() {

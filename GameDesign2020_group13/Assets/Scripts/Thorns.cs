@@ -7,7 +7,6 @@ public class Thorns : MonoBehaviour{
 	//If this is touched by the player, let the gamemaster respawn the player
 	private void OnCollisionEnter(Collision collision) {
 		if (collision.gameObject.CompareTag("Player")) {
-			GameMaster.Instance.removeLife();
 			GameMaster.Instance.respawnPlayer(collision.gameObject);
 		}
 	}
