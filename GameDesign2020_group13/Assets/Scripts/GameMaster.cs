@@ -1,4 +1,6 @@
-﻿using System.Collections;
+﻿using Cinemachine;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,13 +19,29 @@ public class GameMaster : MonoBehaviour
 		}
 	}
 
-	public Transform spawnpoint;
+	public Transform[] spawnpoints;
 	public int keys;
+	public int lives = 3;
+
+	public GameObject[] players;
+	public int currentPlayer = 0;
+
+	private void Start() {
+		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+	}
+
+	private void Update() {
+		if (Input.GetKeyDown(KeyCode.Tab)) {
+			switchPlayer();
+		}
+	}
 
 	//Respawns the player at current spawnpoint
 	public void respawnPlayer(GameObject player) {
-		player.transform.position = spawnpoint.position;
-		player.transform.rotation = spawnpoint.rotation;
+		int playerInd = Array.IndexOf(players, player);
+		players[playerInd].transform.position = spawnpoints[playerInd].position;
+		players[playerInd].transform.rotation = spawnpoints[playerInd].rotation;
 	}
 
 	//Moves the game to the next level
@@ -52,6 +70,38 @@ public class GameMaster : MonoBehaviour
 			return true;
 		} else {
 			return false;
+		}
+	}
+
+	//Removes a life
+	//If there are no lifes left, restart the level
+	public void removeLife() {
+		lives--;
+
+		if (lives == 0) {
+			SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		}
+	}
+
+	//Cycle through players by deactivating active player and activating next player
+	private void switchPlayer() {
+		//Switch off current player
+		players[currentPlayer].transform.Find("CM").GetComponent<CinemachineFreeLook>().enabled = false;
+		players[currentPlayer].GetComponent<PlayerMovement>().enabled = false;
+		if (players[currentPlayer].GetComponent<PlayerDisguise>() != null) {
+			players[currentPlayer].GetComponent<PlayerDisguise>().enabled = false;
+		}
+
+		currentPlayer++;
+		if (currentPlayer == players.Length) {
+			currentPlayer = 0;
+		}
+
+		//Switch on next player
+		players[currentPlayer].transform.Find("CM").GetComponent<CinemachineFreeLook>().enabled = true;
+		players[currentPlayer].GetComponent<PlayerMovement>().enabled = true;
+		if (players[currentPlayer].GetComponent<PlayerDisguise>() != null) {
+			players[currentPlayer].GetComponent<PlayerDisguise>().enabled = true;
 		}
 	}
 }
