@@ -21,7 +21,7 @@ public class GameMaster : MonoBehaviour
 
 	public Transform[] spawnpoints;
 	public int keys;
-	public int lives = 3;
+	public static int lives = 3;
 
 	public GameObject[] players;
 	public int currentPlayer = 0;

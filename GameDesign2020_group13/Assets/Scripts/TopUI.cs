@@ -12,17 +12,21 @@ public class TopUI : MonoBehaviour
     public Image imgPig1;
     public Image imgPig2;
     public Image imgPig3;
+   
+    public Text textPig1;
+    public Text textPig2;
+    public Text textPig3;
+    
+    public Image imgHeart1;
+    public Image imgHeart2;
+    public Image imgHeart3;
+
+    private static int lives;
 
     void Start() //Lets start by getting a reference to our image component.
     {
-        //GameObject is a class, if you want a reference to the gameobject the script is attached to, you use 'gameObject'
-
-        /*GameObject go = GameObject;
-        imgPig1 = go.GetComponent<Image>();
-        imgPig2 = go.GetComponent<Image>();
-        imgPig3 = go.GetComponent<Image>();
-        Pig1();*/
         Pig1();
+        LivesUpdate(3);
     }
 
     public void ChangePig() 
@@ -46,18 +50,55 @@ public class TopUI : MonoBehaviour
         imgPig1.enabled =true;
         imgPig2.enabled = false;
         imgPig3.enabled = false;
+
+        textPig1.enabled = true;
+        textPig2.enabled = false;
+        textPig3.enabled = false;
     }
     public void Pig2()
     {
         imgPig1.enabled = false;
         imgPig2.enabled = true;
         imgPig3.enabled = false;
+
+        textPig1.enabled = false;
+        textPig2.enabled = true;
+        textPig3.enabled = false;
     }
     public void Pig3()
     {
         imgPig1.enabled = false;
         imgPig2.enabled = false;
         imgPig3.enabled = true;
+
+        textPig1.enabled = false;
+        textPig2.enabled = false;
+        textPig3.enabled = true;
+    }
+    public void LivesUpdate(int life) 
+    {
+        if (life == 3)
+        {
+            imgHeart1.enabled = true;
+            imgHeart2.enabled = true;
+            imgHeart3.enabled = true;
+        }else if(life == 2)
+        {
+            imgHeart1.enabled = true;
+            imgHeart2.enabled = true;
+            imgHeart3.enabled = false;
+        }else if(life == 1)
+        {
+            imgHeart1.enabled = true;
+            imgHeart2.enabled = false;
+            imgHeart3.enabled = false;
+        }
+        else
+        {
+            imgHeart1.enabled = false;
+            imgHeart2.enabled = false;
+            imgHeart3.enabled = false;
+        }
     }
    
     void Update ()
@@ -66,6 +107,8 @@ public class TopUI : MonoBehaviour
         {
             pig += 1;
             ChangePig();
-        }   
+        }
+        lives = GameMaster.lives;
+        LivesUpdate(lives);
     }
 }
