@@ -16,7 +16,7 @@ public class Gate : MonoBehaviour
 
 	//If the player walks against the closed gate with enough keys, it opens
 	private void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.CompareTag("Player")) {
+		if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("DisguisedPlayer")) {
 			if (!hasOpened) {
 				if (GameMaster.Instance.useKey()) {
 					openGate();

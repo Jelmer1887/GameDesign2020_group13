@@ -22,6 +22,10 @@ public class Wolf : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+		if (!GetComponent<NavMeshAgent>().hasPath) {
+			GetComponent<NavMeshAgent>().SetDestination(transform.position);
+		}
+
 		Vector2 transformVector = new Vector2(transform.position.x, transform.position.z);
 		Vector2 patrolVector = new Vector2(patrolPoints[currentPatrolPoint].position.x, patrolPoints[currentPatrolPoint].position.z);
 
@@ -39,19 +43,19 @@ public class Wolf : MonoBehaviour
 		float angle = Vector3.Angle(other.transform.position - transform.position, transform.forward);
 		if (angle <= 0.5*fov) {
 			if (Physics.Raycast(transform.position, other.transform.position - transform.position, out vision)) {
-				if (other.CompareTag("Player")) {
+				if (vision.collider.CompareTag("Player")) {
 					if (!removedLife) {
 						GameMaster.Instance.removeLife();
 						removedLife = true;
 					}
 					GameMaster.Instance.respawnPlayer(vision.collider.gameObject);
 					GetComponent<NavMeshAgent>().SetDestination(patrolPoints[currentPatrolPoint].position);
-				} else if (other.CompareTag("DisguisedPlayer")) {
+				} else if (vision.collider.CompareTag("DisguisedPlayer")) {
 					float distance = Vector3.Distance(transform.position, other.transform.position);
-					if (distance > 5.0f) {
+					if (distance > 2.0f) {
 						GetComponent<NavMeshAgent>().SetDestination(other.transform.position);
 					} else {
-						GetComponent<NavMeshAgent>().SetDestination(Vector3.Scale(other.transform.position, new Vector3(0.5f, 1f, 0.5f)));
+						GetComponent<NavMeshAgent>().SetDestination(transform.position);
 					}
 				}
 			}

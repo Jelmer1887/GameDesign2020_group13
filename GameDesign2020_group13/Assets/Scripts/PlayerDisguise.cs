@@ -20,19 +20,16 @@ public class PlayerDisguise : MonoBehaviour
     void Update()
     {
 		if (Input.GetKeyDown(KeyCode.E) && !isDisguised) {
-			Debug.Log("Disguise!");
 			isDisguised = true;
 			mask.SetActive(true);
 			gameObject.tag = "DisguisedPlayer";
 		}
 
 		if (isDisguised) {
-			Debug.Log(timer);
 
 			if (timer > 0) {
 				timer -= Time.deltaTime;
 			} else {
-				Debug.Log("Time has run out!");
 				timer = disguiseDuration;
 				isDisguised = false;
 				gameObject.tag = "Player";

@@ -41,8 +41,10 @@ public class GameMaster : MonoBehaviour
 	//Respawns the player at current spawnpoint
 	public void respawnPlayer(GameObject player) {
 		int playerInd = Array.IndexOf(players, player);
-		players[playerInd].transform.position = spawnpoints[playerInd].position;
-		players[playerInd].transform.rotation = spawnpoints[playerInd].rotation;
+		if (playerInd != -1) {
+			players[playerInd].transform.position = spawnpoints[playerInd].position;
+			players[playerInd].transform.rotation = spawnpoints[playerInd].rotation;
+		}
 	}
 
 	//Moves the game to the next level

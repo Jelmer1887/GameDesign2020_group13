@@ -16,7 +16,7 @@ public class KeyPickup : MonoBehaviour{
 	//If a player walks against the key, 
 	//the player has one more key and this gameobject is destroyed
 	private void OnCollisionEnter(Collision collision) {
-		if (collision.gameObject.CompareTag("Player")) {
+		if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("DisguisedPlayer")) {
 			GameMaster.Instance.pickupKey();
 			GameObject newAudio = Instantiate(audioHolder, transform.position, Quaternion.identity);
 			newAudio.GetComponent<AudioSource>().PlayOneShot(pickupSound, 0.3f);
