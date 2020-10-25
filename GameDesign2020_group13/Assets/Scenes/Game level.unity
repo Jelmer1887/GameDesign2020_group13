@@ -783,22 +783,22 @@ PrefabInstance:
     - target: {fileID: 5922556305603843297, guid: 5a55b6cbad2dd444d91cec5c46690866,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.013476623
+      value: 0.013476621
       objectReference: {fileID: 0}
     - target: {fileID: 5922556305603843297, guid: 5a55b6cbad2dd444d91cec5c46690866,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.39324787
+      value: -0.39324784
       objectReference: {fileID: 0}
     - target: {fileID: 5922556305603843297, guid: 5a55b6cbad2dd444d91cec5c46690866,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.005764836
+      value: 0.0057648355
       objectReference: {fileID: 0}
     - target: {fileID: 5922556305603843297, guid: 5a55b6cbad2dd444d91cec5c46690866,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9193157
+      value: 0.91931564
       objectReference: {fileID: 0}
     - target: {fileID: 5922556306726369977, guid: 5a55b6cbad2dd444d91cec5c46690866,
         type: 3}
@@ -6202,8 +6202,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 122.93, y: -0.25001907}
-  m_SizeDelta: {x: 252.3352, y: 48.2836}
+  m_AnchoredPosition: {x: 105.7, y: 0.25}
+  m_SizeDelta: {x: 264.36658, y: 62.037445}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &521672795
 MonoBehaviour:
@@ -6226,7 +6226,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 15
+    m_FontSize: 13
     m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 1
@@ -6237,7 +6237,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: This is the desguise pig, he can dress up to decieve the wolf
+  m_Text: This is the desguise pig, he can dress up to decieve the wolf press E to
+    dress up
 --- !u!222 &521672796
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -14544,7 +14545,7 @@ PrefabInstance:
     - target: {fileID: 1754255914746169557, guid: ffc0afb644aa77d458d3e98f9a948182,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000009549925
+      value: -0.000009549919
       objectReference: {fileID: 0}
     - target: {fileID: 1754255914746169557, guid: ffc0afb644aa77d458d3e98f9a948182,
         type: 3}
