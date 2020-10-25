@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41f24cda44395fa41bd5e712a6f7f9df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnpoint: {fileID: 0}
+  spawnpoints: []
   keys: 0
   players: []
   currentPlayer: 0
