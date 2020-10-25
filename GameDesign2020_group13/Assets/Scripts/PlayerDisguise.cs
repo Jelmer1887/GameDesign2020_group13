@@ -36,6 +36,7 @@ public class PlayerDisguise : MonoBehaviour
 				timer = disguiseDuration;
 				isDisguised = false;
 				gameObject.tag = "Player";
+				mask.SetActive(false);
 			}
 		}
 	}

@@ -29,6 +29,7 @@ public class GameMaster : MonoBehaviour
 	private void Start() {
 		Cursor.visible = false;
 		Cursor.lockState = CursorLockMode.Locked;
+		lives = 3;
 	}
 
 	private void Update() {

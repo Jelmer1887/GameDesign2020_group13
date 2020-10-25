@@ -9,7 +9,9 @@ public class Wolf : MonoBehaviour
 	public int fov = 60;
 
 	public Transform[] patrolPoints;
-	int currentPatrolPoint = 0;
+	private int currentPatrolPoint = 0;
+
+	private bool removedLife;
 
     // Start is called before the first frame update
     void Start()
@@ -38,7 +40,10 @@ public class Wolf : MonoBehaviour
 			float angle = Vector3.Angle(other.transform.position - transform.position, transform.forward);
 			if (Mathf.Abs(angle) <= 0.5*fov) {
 				if (Physics.Raycast(transform.position, other.transform.position - transform.position, out vision)) {
-					GameMaster.Instance.removeLife();
+					if (!removedLife) {
+						GameMaster.Instance.removeLife();
+						removedLife = true;
+					}
 					GameMaster.Instance.respawnPlayer(vision.collider.gameObject);
 				}
 			}
@@ -50,6 +55,10 @@ public class Wolf : MonoBehaviour
 	private void OnTriggerExit(Collider other) {
 		if (other.CompareTag("DisguisedPlayer")) {
 			GetComponent<NavMeshAgent>().SetDestination(patrolPoints[currentPatrolPoint].position);
+		}
+
+		if (other.CompareTag("Player")) {
+			removedLife = false;
 		}
 	}
 }
