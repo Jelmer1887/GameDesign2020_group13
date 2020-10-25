@@ -36,19 +36,25 @@ public class Wolf : MonoBehaviour
 	}
 
 	private void OnTriggerStay(Collider other) {
-		if (other.CompareTag("Player")) {
-			float angle = Vector3.Angle(other.transform.position - transform.position, transform.forward);
-			if (Mathf.Abs(angle) <= 0.5*fov) {
-				if (Physics.Raycast(transform.position, other.transform.position - transform.position, out vision)) {
+		float angle = Vector3.Angle(other.transform.position - transform.position, transform.forward);
+		if (angle <= 0.5*fov) {
+			if (Physics.Raycast(transform.position, other.transform.position - transform.position, out vision)) {
+				if (other.CompareTag("Player")) {
 					if (!removedLife) {
 						GameMaster.Instance.removeLife();
 						removedLife = true;
 					}
 					GameMaster.Instance.respawnPlayer(vision.collider.gameObject);
+					GetComponent<NavMeshAgent>().SetDestination(patrolPoints[currentPatrolPoint].position);
+				} else if (other.CompareTag("DisguisedPlayer")) {
+					float distance = Vector3.Distance(transform.position, other.transform.position);
+					if (distance > 5.0f) {
+						GetComponent<NavMeshAgent>().SetDestination(other.transform.position);
+					} else {
+						GetComponent<NavMeshAgent>().SetDestination(Vector3.Scale(other.transform.position, new Vector3(0.5f, 1f, 0.5f)));
+					}
 				}
 			}
-		} else if(other.CompareTag("DisguisedPlayer")){
-			GetComponent<NavMeshAgent>().SetDestination(other.transform.position);
 		}
 	}
 
