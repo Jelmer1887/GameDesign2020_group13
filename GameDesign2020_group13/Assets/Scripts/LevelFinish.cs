@@ -10,7 +10,7 @@ public class LevelFinish : MonoBehaviour{
 
 	//If this is touched by the player, let the gamemaster get us to the next level
 	private void OnTriggerEnter(Collider collider) {
-		if (collider.gameObject.CompareTag("Player")) {
+		if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("DisguisedPlayer")) {
 			playerCount++;
 
 			if (playerCount >= 3) {
@@ -22,7 +22,7 @@ public class LevelFinish : MonoBehaviour{
 	}
 
 	private void OnTriggerExit(Collider collider) {
-		if (collider.gameObject.CompareTag("Player")) {
+		if (collider.gameObject.CompareTag("Player") || collider.gameObject.CompareTag("DisguisedPlayer")) {
 			playerCount--;
 		}
 	}
